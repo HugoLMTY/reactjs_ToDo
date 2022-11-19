@@ -1,0 +1,65 @@
+
+
+.rowsHolder {
+	display: flex;
+
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+
+}
+
+.row {
+	background: lightskyblue;
+
+	margin: 10px;
+
+	min-width: 420px;
+	max-width: 710px;
+	
+}
+
+.rowTitleHolder,
+.ticket {
+
+	border-radius: 10px;
+}
+
+
+.rowTitleHolder {
+	background: whitesmoke;
+
+	text-align: center;
+
+	margin: 10px;
+	padding: 5px;
+}
+
+.rowTitle {
+	font-size: 20px;
+}
+
+.ticket {
+	background: lightgray;
+
+	margin: 25px;
+	padding: 10px;
+}
+
+.last-ticket {
+	margin-bottom: 25px;
+	border-bottom: 1px solid #80dfff;
+}
+
+.new-ticket,
+.no-ticket,
+.new-row {
+	color: gray;
+	font-size: large;
+	text-align: center;
+}
+
+.new-ticket,
+.new-row {
+	border: 1px solid #80dfff;
+}
