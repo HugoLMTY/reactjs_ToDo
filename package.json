@@ -19,6 +19,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "router-dom": "^2.2.9",
+    "sass": "^1.56.1",
     "sweetalert2": "^11.6.9",
     "sweetalert2-react-content": "^5.0.7",
     "web-vitals": "^2.1.4"

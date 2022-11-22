@@ -1,6 +1,6 @@
 
 
-.rowsHolder {
+.columnsHolder {
 	display: flex;
 
 	flex-wrap: wrap;
@@ -9,24 +9,23 @@
 
 }
 
-.row {
+.column {
 	background: lightskyblue;
 
 	margin: 10px;
 
-	min-width: 420px;
-	max-width: 710px;
-	
+	min-width: 400px;
+	max-width: 710px;	
 }
 
-.rowTitleHolder,
+.columnTitleHolder,
 .ticket {
 
 	border-radius: 10px;
 }
 
 
-.rowTitleHolder {
+.columnTitleHolder {
 	background: whitesmoke;
 
 	text-align: center;
@@ -35,7 +34,7 @@
 	padding: 5px;
 }
 
-.rowTitle {
+.columnTitle {
 	font-size: 20px;
 }
 
@@ -53,13 +52,13 @@
 
 .new-ticket,
 .no-ticket,
-.new-row {
+.new-column {
 	color: gray;
 	font-size: large;
 	text-align: center;
 }
 
 .new-ticket,
-.new-row {
+.new-column {
 	border: 1px solid #80dfff;
 }
