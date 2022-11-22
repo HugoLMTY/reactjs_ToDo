@@ -1,15 +1,15 @@
 //? Native
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 //? Imports
-import './style.css';
+import './style.css'
 
 //? Packages
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-const swal = withReactContent(Swal);
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const swal = withReactContent(Swal)
 
 
 /*
@@ -33,7 +33,15 @@ const swal = withReactContent(Swal);
 */
 
 /*
-	TODO
+	TODO -------------
+	? Handling
+	* Handle la position du ticket sur le 
+
+	? Swal
+	* Lier les swalInput() 
+	* Implémenter les swalSuccess()
+
+	? Features
 	* Ajouter des users + membres sur les cartes
 	* Ajouter des labels sur les cartes
 	* Ajouter des dates sur les cartes
@@ -89,11 +97,11 @@ const TodoList = () => {
 				expanded: true,
 			},
 		],
-	});
+	})
 	useEffect(() => {
-		const sorted = List.columns.sort((a, b) => a.position - b.position);
-		if (sorted !== List.columns) setList({ columns: sorted });
-	}, [List]);
+		const sorted = List.columns.sort((a, b) => a.position - b.position)
+		if (sorted !== List.columns) setList({ columns: sorted })
+	}, [List])
 	//#endregion
 
 	//#region --------------- ACTIONS ---------------	
@@ -108,14 +116,13 @@ const TodoList = () => {
 			showCancelButton: true,
 			confirmButtonText: 'Create',
 			preConfirm: (name) => {
-				if (name === '') {
-					swal.showValidationMessage(`Please enter a name`);
+				if (name.trim().length <= 3) {
+					swal.showValidationMessage(`Column name must be at least 3 characters long`)
 				}
-				return name;
+				return name
 			},
-		});
-		if (!name.isConfirmed) return;
-		if (name.value.trim().length <= 3) return swalError('Name must be more than 3 characters long');
+		})
+		if (!name.isConfirmed) return
 
 		const column = {
 			id: List.columns.length + 10,
@@ -124,26 +131,10 @@ const TodoList = () => {
 			position: List.columns.length,
 			status: 'Created',
 			expanded: true,
-		};
+		}
 
-		// console.log({ List, column });&
-
-		setList({ columns: [...List.columns, column] });
-	};
-
-	const changeColumn = (ticketId, columnId, action) => {
-		const column = List.columns.find(column => column.id === columnId);
-		const ticket = column.tickets.find((ticket) => ticket.id === ticketId);
-
-		const targetPos = action === "+" ? column.position + 1 : column.position -1
-		const targetColumn = List.columns.find($column => $column.position === targetPos)
-		if (!targetColumn) return false
-
-		column.tickets = column.tickets.filter($ticket => $ticket.id !== ticketId)
-		targetColumn.tickets.push(ticket)
-
-		setList({ columns: List.columns });
-	};
+		setList({ columns: [...List.columns, column] })
+	}
 
 	const toggleColumnDisplay = (columnId) => {
 		const column = List.columns.find(column => column.id === columnId)
@@ -152,7 +143,35 @@ const TodoList = () => {
 		column.expanded = !column.expanded
 
 		setList({ columns: List.columns })
-	};
+	}
+
+	const updateColumnPosition = (columnId, action) => {
+		//? Get the current column
+		const column = List.columns.find(column => column.id === columnId)
+
+		//? Get the new position
+		const targetPos = action === "+" ? column.position + 1 : column.position - 1
+
+		//? Get the target column
+		const target = List.columns.find($column => $column.position === targetPos)
+
+		//? If no target, return
+		if (!target) return false
+
+		
+		//? Temporarily store the target position
+		const temp = target.position
+
+		//? Update the target position
+		target.position = column.position
+
+		//? Update the current column position
+		column.position = temp
+
+
+		//? Save the new list
+		setList({ columns: List.columns })
+	}
 
 	//? ------------------ TICKETS ------------------
 	const createTicket = async (column) => {
@@ -165,13 +184,13 @@ const TodoList = () => {
 			showCancelButton: true,
 			confirmButtonText: '➡️',
 			preConfirm: (title) => {
-				if (title === '') {
-					swal.showValidationMessage(`Title can't be empty`);
+				if (title.trim().length <= 3) {
+					swal.showValidationMessage(`Title must be more than 3 characters long`)
 				}
-				return title;
+				return title
 			},
-		});
-		if (!title.isConfirmed) return;
+		})
+		if (!title.isConfirmed) return
 
 		const desc = await swal.fire({
 			title: 'Create ticket',
@@ -181,30 +200,30 @@ const TodoList = () => {
 			showCancelButton: true,
 			confirmButtonText: 'Create',
 			preConfirm: (desc) => {
-				if (desc === '') {
-					swal.showValidationMessage(`Description can't be empty`);
+				if (desc.trim().length <= 3) {
+					swal.showValidationMessage(`Description must be more than 3 characters long`)
 				}
-				return desc;
+				return desc
 			},
-		});
-		if (!desc.isConfirmed) return;
+		})
+		if (!desc.isConfirmed) return
 
 		const ticket = {
 			id: Math.floor(Math.random() * 1000),
 			title: title.value,
 			desc: desc.value,
 			status: 'Created',
-		};
+		}
 
-		column.tickets.push(ticket);
-		setList({ columns: List.columns });
-	};
+		column.tickets.push(ticket)
+		setList({ columns: List.columns })
+	}
 
 	const editTicket = (ticketId) => {
 		const column = List.columns.find((column) =>
 			column.tickets.find((ticket) => ticket.id === ticketId)
-		);
-		const ticket = column.tickets.find((ticket) => ticket.id === ticketId);
+		)
+		const ticket = column.tickets.find((ticket) => ticket.id === ticketId)
 
 		swal.fire({
 			title: 'Edit ticket',
@@ -218,14 +237,14 @@ const TodoList = () => {
 			denyButtonText: 'Delete',
 			preConfirm: (desc) => {
 				try {
-					ticket.desc = desc;
-					setList({ columns: List.columns });
+					ticket.desc = desc
+					setList({ columns: List.columns })
 					swal.fire({
 						icon: 'success',
 						title: 'Saved!',
-					});
+					})
 				} catch (err) {
-					swal.showValidationMessage(`Request failed: ${err}`);
+					swal.showValidationMessage(`Request failed: ${err}`)
 				}
 			},
 		}).then((res) => {
@@ -233,27 +252,27 @@ const TodoList = () => {
 				try {
 					column.tickets = column.tickets.filter(
 						(ticket) => ticket.id !== ticketId
-					);
-					setList({ columns: List.columns });
+					)
+					setList({ columns: List.columns })
 
 					swal.fire({
 						icon: 'success',
 						title: 'Deleted !',
-					});
+					})
 				} catch (err) {
 					swal.fire({
 						icon: 'error',
 						title: 'Oops...',
 						text: 'Something went wrong!',
-					});
+					})
 				}
 			}
-		});
-	};
+		})
+	}
 
 	const updateTicketPosition = (datas) => {
 		try {
-			// console.log(datas);
+			console.log(datas)
 			const {
 				source,
 				destination,
@@ -282,8 +301,25 @@ const TodoList = () => {
 			target.tickets.push(ticket)
 
 			setList({ columns: List.columns })
-		} catch(err) { console.log(err); swalError(err) }
-	};
+		} catch(err) { 
+			console.log(err)
+			swalError(err) 
+		}
+	}	
+
+	const changeColumn = (ticketId, columnId, action) => {
+		const column = List.columns.find(column => column.id === columnId)
+		const ticket = column.tickets.find((ticket) => ticket.id === ticketId)
+
+		const targetPos = action === "+" ? column.position + 1 : column.position -1
+		const targetColumn = List.columns.find($column => $column.position === targetPos)
+		if (!targetColumn) return false
+
+		column.tickets = column.tickets.filter($ticket => $ticket.id !== ticketId)
+		targetColumn.tickets.push(ticket)
+
+		setList({ columns: List.columns })
+	}
 
 	//#endregion
 
@@ -311,7 +347,18 @@ const TodoList = () => {
 												{ column.name } ({ column.tickets.length })
 											</h2>
 
+
+											{ 
+												column.position - 1 >= 0 && 
+												( <button onClick={ () => updateColumnPosition(column.id, '-') }> ⬅️{' '} </button> )
+											}
+
 											<button onClick={ () => toggleColumnDisplay(column.id) }> { column.expanded ? '-' : '+' } </button>
+
+											{
+												column.position + 1 < List.columns.length &&
+												( <button onClick={ () => updateColumnPosition(column.id, '+') }> ➡️{' '} </button> )
+											}
 										</div>
 
 										
@@ -322,7 +369,7 @@ const TodoList = () => {
 									</div>
 								)}
 							</Droppable>
-						);
+						)
 					})}
 
 					<div className="column new-column">
@@ -333,12 +380,12 @@ const TodoList = () => {
 						{getNewColumnButton()}
 					</div>
 				</div>
-			);
+			)
 		} catch (err) {
-			console.log({ err });
-			return <h1> Error getting columns </h1>;
+			console.log({ err })
+			return <h1> Error getting columns </h1>
 		}
-	};
+	}
 
 	const getTickets = (column) => {
 		try {
@@ -381,16 +428,16 @@ const TodoList = () => {
 								</div>
 							)}
 						</Draggable>
-					);
-				});
+					)
+				})
 			} else {
-				return <h3 className="no-ticket"> No tickets </h3>;
+				return <h3 className="no-ticket"> No tickets </h3>
 			}
 		} catch (err) {
-			console.log({ err });
-			// return <h1> Error getting tickets </h1>;
+			console.log({ err })
+			// return <h1> Error getting tickets </h1>
 		}
-	};
+	}
 
 	const getNewTicketButton = (column) => {
 		return (
@@ -401,8 +448,8 @@ const TodoList = () => {
 				{' '}
 				+{' '}
 			</div>
-		);
-	};
+		)
+	}
 
 	const getNewColumnButton = (column) => {
 		return (
@@ -410,8 +457,8 @@ const TodoList = () => {
 				{' '}
 				+{' '}
 			</div>
-		);
-	};
+		)
+	}
 	//#endregion
 
 	return (
@@ -422,8 +469,8 @@ const TodoList = () => {
 				{ getColumns(List) }
 			</DragDropContext>
 		</div>
-	);
-};
+	)
+}
 
 //#region --------------- SWAL ---------------
 
@@ -477,9 +524,9 @@ const swalSuccess = (title = "Succès !") => {
 
 //#region --------------- TOOLS ---------------
 const logStuff = (stuff) => {
-	console.log({ stuff });
-};
+	console.log({ stuff })
+}
 //#endregion
 
 
-export default TodoList;
+export default TodoList
