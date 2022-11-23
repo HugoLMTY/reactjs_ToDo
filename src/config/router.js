@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-	RouterProvider,
-	createBrowserRouter
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 
 import TodoList from '../pages/todoTable'
@@ -15,10 +12,4 @@ const router = createBrowserRouter([
 		{ path: "/counter", 	element: <Counter /> 	}
 ])
 
-const Navigator = () => {
-	return (
-		<RouterProvider router={router} />
-	)
-}
-
-export default Navigator
+export default router

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 
 //? Imports
+import Nav from '../nav'
 import './style.css'
 
 //? Packages
@@ -33,6 +34,8 @@ const swal = withReactContent(Swal)
 */
 
 /*
+	* https://cours-react.notion.site/cours-react/React-12cf40e60c284508b958256886728406
+
 	TODO -------------
 	? Handling
 	* Handle la position du ticket sur le 
@@ -461,15 +464,19 @@ const TodoList = () => {
 	}
 	//#endregion
 
+	//#region --------------- RETURN ---------------
 	return (
 		<div>
 			<h1> TODO List </h1>
+
+			<Nav />
 
 			<DragDropContext onDragEnd={($event) => updateTicketPosition($event)}>
 				{ getColumns(List) }
 			</DragDropContext>
 		</div>
 	)
+	//#endregion
 }
 
 //#region --------------- SWAL ---------------

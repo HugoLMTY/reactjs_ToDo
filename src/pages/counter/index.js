@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Nav from "../nav";
 
 const Counter = () => {
-
 	const [ count, setCount ] = useState(0);
 
 	useEffect(() => {
 		console.log(`${count} clicks`)
-	},
-	//* Tableau de dépendances (liste des states 
-	[ count ]
-	) 
+	}, [ count ]) 
 
 
 	//* Consomme - de ressources, good practice
@@ -20,6 +17,8 @@ const Counter = () => {
 	return (
 		<div>
 			<h1>Counter</h1>
+
+			<Nav />
 
 			<h3> { count } </h3>
 
