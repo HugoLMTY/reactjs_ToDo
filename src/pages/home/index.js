@@ -14,6 +14,8 @@ const Home = () => {
 		<div>
 			<h1> Home </h1>
 
+			<Nav />
+			
 			<ul>
 				<li> <a href="/todo"> Todo List </a> </li>
 				<li> <a href="/counter"> Counter </a> </li>

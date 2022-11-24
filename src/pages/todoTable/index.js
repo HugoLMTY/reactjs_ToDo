@@ -469,6 +469,8 @@ const TodoList = () => {
 		<div>
 			<h1> TODO List </h1>
 
+			<Nav />
+
 			<DragDropContext onDragEnd={($event) => updateTicketPosition($event)}>
 				{ getColumns(List) }
 			</DragDropContext>

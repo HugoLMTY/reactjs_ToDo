@@ -20,6 +20,8 @@ const Player = () => {
 		<div>
 			<h1> Player </h1>
 
+			<Nav />
+
 			<audio 
 				ref={ (ref) => ( audioRef.current = ref ) } 
 				src="https://cdn.discordapp.com/attachments/1043073684023300110/1045346711004008499/summoners.mp3"

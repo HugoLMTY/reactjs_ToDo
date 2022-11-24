@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import { FaGripVertical } from 'react-icons/fa';
 
-const Ticket = ({ item, provided }) => {
+const Ticket = ({ item, index, provided }) => {
 	return (
-		<Row >
-			<Position>	{ item.position } 	</Position>
+		<Row ref={ provided.innerRef } {...provided.draggableProps}  >
+			<Position>	{ index + 1 } 	</Position>
 
 			<Sentence>	{ item.content }	</Sentence>
 
@@ -66,6 +66,8 @@ const Row = styled.div`
 	box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
 
 	background: lightblue;
+
+	
 
 `
 

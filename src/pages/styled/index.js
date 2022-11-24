@@ -14,7 +14,7 @@ const Styled = () => {
 		{ id: 23, content: "elit.", 						position: 4		}
 	])
 	useEffect(() => {
-		axios
+		false && axios
 			.get('http://localhost:3001/')
 			.then(res => {
 				const mapped = res.data.map((sentence, index) => ({ content: sentence, id: index + 10, position: index + 1 }))
@@ -24,13 +24,24 @@ const Styled = () => {
 
 	}, [])
 
+	useEffect(() => {
+		const sorted = sentences.sort((a, b) => a.position - b.position)
+
+		if (sentences.map(s => s.id) !== sorted.map(s => s.id)) setSentences(sorted)
+
+	}, [ sentences ])
+
 	const updatePosition = ($event) => {
 		const { destination, source } = $event
+		if (!destination || source.index === destination.index) return
+		
+		const current = sentences.find(s => s.id.toString() === source.index.toString())
+		const targetIndex = sentences.findIndex(s => s.id.toString() === destination.index.toString())		
 
-		console.log({ $event })
-		// if (!destination) return
+		const datas = sentences.filter(s => s.id.toString() !== current.id.toString())
+		datas.splice(targetIndex, 0, current)
 
-		// setSentences(newSentences)
+		setSentences(datas)
 	}
 	
 
@@ -38,20 +49,22 @@ const Styled = () => {
 		<div>
 			<h1> Styled Comps </h1>
 
+			<Nav />
+
 			<Container>				
 
-				<DragDropContext onDragEnd={ ($event) => { updatePosition($event) } }>
+				<DragDropContext onDragStart={ ($event) => { logStuff($event) }} onDragEnd={ ($event) => { updatePosition($event) } }>
 
 					<Droppable droppableId="dropZone" index={0} >
 						{(provided) => (
 
 							<div ref={provided.innerRef} {...provided.droppableProps} >
 								{
-									sentences.map(s => {
+									sentences.map((s, i) => {
 										return (
 										<Draggable key={s.id} index={ s.id } draggableId={ s.position.toString() }>
-											{(provided) => {
-												return <Ticket item={ s } provided={ provided } />
+											{($provided) => {
+												return <Ticket item={ s } index={ i } provided={ $provided } />
 											}}
 										</Draggable>
 										)
@@ -68,6 +81,8 @@ const Styled = () => {
 		</div>
 	)
 }
+
+const logStuff = (stuff) => { false && console.log(stuff) }
 
 const Container = styled.div`
 	/* height: 75vh; */

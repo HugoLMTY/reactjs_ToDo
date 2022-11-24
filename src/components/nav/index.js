@@ -1,39 +1,51 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import AdStuff from "../../pages/adStuff";
+import Counter from "../../pages/counter";
+import Home from "../../pages/home";
+import Player from "../../pages/player";
+import Styled from "../../pages/styled";
+import TodoList from "../../pages/todoTable";
 
 const pages = [
 	{
 		name: "Home",
-		path: "/"
+		path: "/",
+		component:  <Home />
 	},
 	{
 		name: "Todo List",
-		path: "/todo"
+		path: "/todo",
+		component:  <TodoList />
 	},
 	{
 		name: "Counter",
-		path: "/counter"
+		path: "/counter",
+		component: <Counter />
 	},
 	{
 		name: "Styled",
-		path: "/styled"
+		path: "/styled",
+		component: <Styled />
 	},
 	{
 		name: "Player",
-		path: "/player"
+		path: "/player",
+		component: <Player />
 	},
 	{
 		name: "Ad Stuff",
-		path: "/adStuff"
+		path: "/adStuff",
+		component: <AdStuff />
 	}
 ]
 
 
 
 const Nav = (props) => {
-	// const navigate = useNavigate()
-	const navigate = () => {}
+	const navigate = useNavigate()
+	// const navigate = () => {}
 
 
 	const currentPage = window.location.href.split('localhost:3000')[1]
@@ -41,18 +53,36 @@ const Nav = (props) => {
 	return (
 		<>
 			{pages.map((page, index) => (
-				<NavItem key={index} onClick={() => navigate(page.path)} active={ currentPage == page.path }>
+				<NavButton key={index} onClick={() => navigate(page.path)} active={ currentPage == page.path }>
 					{page.name}
-				</NavItem>
+				</NavButton>
 			))}
 
 			{ props.children }
 		</>
+		// <>
+		// 	<BrowserRouter>
+		// 		<Routes>
+
+		// 			{
+		// 				pages.map(page => {
+		// 					return (
+		// 					<>
+		// 						{/* <Route key={page.path} path={page.path} element={ page.component } /> */}
+		// 						<NavButton key={page.name} onClick={() => navigate(page.path)} active={currentPage === page.path} >{page.name}</NavButton>
+		// 					</>
+		// 					)
+		// 				})
+		// 			}
+
+		// 		</Routes>
+		// 	</BrowserRouter>
+		// </>
 	)
 }
 
 
-const NavItem = styled.button`
+const NavButton = styled.button`
 	border: 1px solid red;
 	color: white;
 	border-radius: 15px;

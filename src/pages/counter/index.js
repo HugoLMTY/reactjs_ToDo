@@ -18,6 +18,8 @@ const Counter = () => {
 		<div>
 			<h1>Counter</h1>
 			
+			<Nav />
+			
 			<h3> { count } </h3>
 
 			<div>
