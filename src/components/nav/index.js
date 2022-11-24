@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const pages = [
 	{
@@ -17,24 +18,57 @@ const pages = [
 	{
 		name: "Styled",
 		path: "/styled"
+	},
+	{
+		name: "Player",
+		path: "/player"
+	},
+	{
+		name: "Ad Stuff",
+		path: "/adStuff"
 	}
 ]
 
 
 
-const Nav = () => {
-	const navigate = useNavigate()
+const Nav = (props) => {
+	// const navigate = useNavigate()
+	const navigate = () => {}
 
+
+	const currentPage = window.location.href.split('localhost:3000')[1]
 
 	return (
-		<div>
+		<>
 			{pages.map((page, index) => (
-				<button key={index} onClick={() => navigate(page.path)}>
+				<NavItem key={index} onClick={() => navigate(page.path)} active={ currentPage == page.path }>
 					{page.name}
-				</button>
+				</NavItem>
 			))}
-		</div>
+
+			{ props.children }
+		</>
 	)
 }
+
+
+const NavItem = styled.button`
+	border: 1px solid red;
+	color: white;
+	border-radius: 15px;
+	margin: 5px;
+	padding: 5px 20px 5px 20px;
+
+	transition-duration: 0.15s;
+
+	${({ active }) => active && `
+		background-color: red;
+	`}
+
+	:hover {
+		background-color: red;
+		opacity: 0.69;
+	}
+`
 
 export default Nav

@@ -7,12 +7,9 @@ import router from "./config/router";
 
 export default function App() {
 	return (
-		<div>
-
-			{/* <Nav /> */}
-
-			<RouterProvider router={router}>
-			</RouterProvider>
-		</div>
+		<Nav>
+			<RouterProvider router={router} />
+		</Nav>
 	)
+
 }

@@ -1,32 +1,69 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-const swal = withReactContent(Swal)
+import { FaGripVertical } from 'react-icons/fa';
 
-const Ticket = ({ text = "ok", index = -1 }) => {
-	const [ state, setstate ] = useState(null)
-
+const Ticket = ({ item, provided }) => {
 	return (
-		<Row>
-			{ index }
-			{ text }
+		<Row >
+			<Position>	{ item.position } 	</Position>
+
+			<Sentence>	{ item.content }	</Sentence>
+
+			<Grip  {...provided.dragHandleProps}>		
+				<FaGripVertical />	
+			</Grip>
+
+			{provided.placeholder}		
 		</Row>
-	)
-}
+)}
+
+const Position = styled.div`
+	background-color: lightgreen;
+	color: white;
+	border-radius: 5px;
+	margin: 20px;
+	padding: 5px;
+`
+
+const Sentence = styled.div`
+
+	user-select: all;
+
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
+`
+
+const Grip = styled.div`
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	float: right;
+`
+
 
 const Row = styled.div`
 
-	width: 50%;
+	user-select: none;
+
+	width: 69%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
 	margin: 10px;
 	padding: 10px;
 
 	text-align: center;
 	border-radius: 10px;
+
+	/* make me a glowy white border pls */
+	box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
 
 	background: lightblue;
 
