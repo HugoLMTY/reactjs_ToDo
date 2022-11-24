@@ -14,11 +14,11 @@ const Styled = () => {
 		{ id: 23, content: "elit.", 						position: 4		}
 	])
 	useEffect(() => {
-		false && axios
+		axios
 			.get('http://localhost:3001/')
 			.then(res => {
 				const mapped = res.data.map((sentence, index) => ({ content: sentence, id: index + 10, position: index + 1 }))
-				// setSentences(mapped)
+				setSentences(mapped)
 			})
 			.catch(err => { console.log(err) })
 
@@ -62,11 +62,11 @@ const Styled = () => {
 								{
 									sentences.map((s, i) => {
 										return (
-										<Draggable key={s.id} index={ s.id } draggableId={ s.position.toString() }>
-											{($provided) => {
-												return <Ticket item={ s } index={ i } provided={ $provided } />
-											}}
-										</Draggable>
+											<Draggable key={s.id} index={ s.id } draggableId={ s.position.toString() }>
+												{($provided) => {
+													return <Ticket item={ s } index={ i } provided={ $provided } />
+												}}
+											</Draggable>
 										)
 									})
 								}
@@ -90,14 +90,6 @@ const Container = styled.div`
 	margin: 50px;
 
 	background-color: whitesmoke;
-`
-
-const Button = styled.button`
-	background-color: red;
-	color: white;
-	border-radius: 5px;
-	margin: 20px;
-	padding: 20px;
 `
 
 export default Styled;

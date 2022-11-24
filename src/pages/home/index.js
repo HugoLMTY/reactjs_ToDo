@@ -6,10 +6,11 @@ const Home = () => {
 	const [ state, setState ] = useState(0);
 
 	useEffect(() => {
-
+		if (false ) setState()
 	}, [ state ]) 
 
-
+	// setState()
+	
 	return (
 		<div>
 			<h1> Home </h1>

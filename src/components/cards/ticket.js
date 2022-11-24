@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 import { FaGripVertical } from 'react-icons/fa';
@@ -67,7 +65,11 @@ const Row = styled.div`
 
 	background: lightblue;
 
-	
+	transition-duration: 0.2s;
+
+	&:first-child {
+        border: 2px solid yellow
+    }
 
 `
 

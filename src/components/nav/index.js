@@ -1,43 +1,43 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AdStuff from "../../pages/adStuff";
-import Counter from "../../pages/counter";
-import Home from "../../pages/home";
-import Player from "../../pages/player";
-import Styled from "../../pages/styled";
-import TodoList from "../../pages/todoTable";
+// import AdStuff from "../../pages/adStuff";
+// import Counter from "../../pages/counter";
+// import Home from "../../pages/home";
+// import Player from "../../pages/player";
+// import Styled from "../../pages/styled";
+// import TodoList from "../../pages/todoTable";
 
 const pages = [
 	{
 		name: "Home",
 		path: "/",
-		component:  <Home />
+		// component:  <Home />
 	},
 	{
 		name: "Todo List",
 		path: "/todo",
-		component:  <TodoList />
+		// component:  <TodoList />
 	},
 	{
 		name: "Counter",
 		path: "/counter",
-		component: <Counter />
+		// component: <Counter />
 	},
 	{
 		name: "Styled",
 		path: "/styled",
-		component: <Styled />
+		// component: <Styled />
 	},
 	{
 		name: "Player",
 		path: "/player",
-		component: <Player />
+		// component: <Player />
 	},
 	{
 		name: "Ad Stuff",
 		path: "/adStuff",
-		component: <AdStuff />
+		// component: <AdStuff />
 	}
 ]
 
@@ -53,7 +53,7 @@ const Nav = (props) => {
 	return (
 		<>
 			{pages.map((page, index) => (
-				<NavButton key={index} onClick={() => navigate(page.path)} active={ currentPage == page.path }>
+				<NavButton key={index} onClick={() => navigate(page.path)} active={ currentPage === page.path }>
 					{page.name}
 				</NavButton>
 			))}

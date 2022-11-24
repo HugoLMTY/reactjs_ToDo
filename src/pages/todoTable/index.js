@@ -437,7 +437,7 @@ const TodoList = () => {
 				return <h3 className="no-ticket"> No tickets </h3>
 			}
 		} catch (err) {
-			console.log({ err })
+			logStuff(err)
 			// return <h1> Error getting tickets </h1>
 		}
 	}
@@ -481,37 +481,37 @@ const TodoList = () => {
 
 //#region --------------- SWAL ---------------
 
-const swalInput = ({ title = "Input", text = null, input = "text", placeHolder = "", value = "", buttons = {} }) => {
+// const swalInput = ({ title = "Input", text = null, input = "text", placeHolder = "", value = "", buttons = {} }) => {
 
-	const {
-		confirm = "Save",
-		cancel = "Cancel",
-		deny = "Deny",
+// 	const {
+// 		confirm = "Save",
+// 		cancel = "Cancel",
+// 		deny = "Deny",
 
-		showCancelButton = false,
-		showDenyButton = false,
-	} = buttons
+// 		showCancelButton = false,
+// 		showDenyButton = false,
+// 	} = buttons
 
-	return swal.fire({
-		title,
-		text,
+// 	return swal.fire({
+// 		title,
+// 		text,
 
-		input,
-		inputValue: value,
-		inputPlaceholder: placeHolder,
+// 		input,
+// 		inputValue: value,
+// 		inputPlaceholder: placeHolder,
 
-		showCancelButton,
-		showDenyButton,
+// 		showCancelButton,
+// 		showDenyButton,
 
-		confirmButtonText: confirm,
-		cancelButtonText: cancel,
-		dentButtonText: deny,
+// 		confirmButtonText: confirm,
+// 		cancelButtonText: cancel,
+// 		dentButtonText: deny,
 
-		preConfirm: (value) => {
-			console.log({ value })
-		}
-	})
-}
+// 		preConfirm: (value) => {
+// 			console.log({ value })
+// 		}
+// 	})
+// }
 
 const swalError = (err) => {
 	return swal.fire({
@@ -521,12 +521,12 @@ const swalError = (err) => {
 	})
 }
 
-const swalSuccess = (title = "Succès !") => {
-	return swal.fire({
-		icon: 'success',
-		title
-	})
-}
+// const swalSuccess = (title = "Succès !") => {
+// 	return swal.fire({
+// 		icon: 'success',
+// 		title
+// 	})
+// }
 //#endregion
 
 //#region --------------- TOOLS ---------------
