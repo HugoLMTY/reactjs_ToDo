@@ -17,21 +17,6 @@ const Header = ({ title = "Dash" }) => {
 
 			</div>
 		</div>
-
-		// <Navbar bg="dark" variant="dark">
-		// 	<Container>
-		// 		<Navbar.Brand href="/">
-		// 			{ title }
-		// 		</Navbar.Brand>
-
-		// 		{/* <button onClick={ () => navigate('/todo') }> To DO </button>
-		// 		<button onClick={ () => navigate('/counter') }> Counter </button> */}
-
-		// 		{/* <Link to="/todo">List</Link> */}
-		// 		{/* <Link to="/counter">Counter</Link> */}
-		// 	</Container>
-		// </Navbar>
-
 	)
 }
 

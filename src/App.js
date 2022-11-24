@@ -1,24 +1,6 @@
-// import './App.css';
+import React from 'react';
 
-import Header from './pages/header';
-import TodoList from './pages/todoTable';
-// // import Navigator from './config/routes';
-
-// function App() {
-// 	return (
-// 		<div>
-// 			<Header />
-// 			<TodoList />
-
-// 			{/* <Navigator /> */}
-
-// 		</div>
-// 	)
-// }
-
-// export default App;
-
-
+import Nav from './components/nav';
 
 import { RouterProvider } from "react-router-dom";
 import router from "./config/router";
@@ -27,9 +9,10 @@ export default function App() {
 	return (
 		<div>
 
-		<RouterProvider router={router}>
-			<Header />
-		</RouterProvider>
+			{/* <Nav /> */}
+
+			<RouterProvider router={router}>
+			</RouterProvider>
 		</div>
 	)
 }

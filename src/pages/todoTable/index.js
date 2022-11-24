@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 
 //? Imports
-import Nav from '../nav'
+import Nav from '../../components/nav'
 import './style.css'
 
 //? Packages

@@ -8,12 +8,16 @@ const pages = [
 	},
 	{
 		name: "Todo List",
-		path: "/"
+		path: "/todo"
 	},
 	{
 		name: "Counter",
 		path: "/counter"
 	},
+	{
+		name: "Styled",
+		path: "/styled"
+	}
 ]
 
 

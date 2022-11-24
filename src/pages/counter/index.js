@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../nav";
+import Nav from "../../components/nav";
 
 const Counter = () => {
 	const [ count, setCount ] = useState(0);
