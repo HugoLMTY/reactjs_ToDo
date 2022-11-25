@@ -7,6 +7,7 @@ import Counter from '../pages/counter'
 import Styled from '../pages/styled'
 import Player from '../pages/player'
 import AdStuff from '../pages/adStuff'
+import Timer from '../pages/timer'
 
 const router = createBrowserRouter([
 		{ path: "/", 			element: <Home /> 		},
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
 		{ path: "/styled", 		element: <Styled /> 	},
 		{ path: "/player", 		element: <Player /> 	},
 		{ path: "/adStuff", 	element: <AdStuff /> 	},
+		{ path: "/timer", 		element: <Timer /> 		},
 ])
 
 export default router

@@ -34,10 +34,14 @@ const pages = [
 		path: "/player",
 		// component: <Player />
 	},
+	// {
+	// 	name: "Ad Stuff",
+	// 	path: "/adStuff",
+	// 	// component: <AdStuff />
+	// },
 	{
-		name: "Ad Stuff",
-		path: "/adStuff",
-		// component: <AdStuff />
+		name: "Timer",
+		path: "/timer",
 	}
 ]
 
